@@ -67,7 +67,6 @@ input:focus {
     justify-content: center;
     width: 45.5px;
     height: 45.5px;
-    padding: 2px;
     border-top-right-radius: 6px;
     border-bottom-right-radius: 6px;
     border: 1px solid #ccc;
@@ -137,3 +136,26 @@ box-shadow: 0 8px 26px rgba(0, 0, 0, 0.4), 0 28px 30px rgba(0, 0, 0, 0.3);
     color: rgba(17, 101, 232, 1);
 }
 
+.load-more {
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1.4;
+    background-color: #feff00;
+    color: rgba(17, 101, 232, 1);
+    transition: background-color color 300ms cubic-bezier(0.4, 0, 0.2, 1)
+}
+
+.load-more:hover,
+.load-more:focus {
+    color: #feff00 ;
+    background-color: rgba(17, 101, 232, 1);
+    border-radius: 4px;
+}
