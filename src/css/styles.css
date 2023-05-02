@@ -159,3 +159,7 @@ box-shadow: 0 8px 26px rgba(0, 0, 0, 0.4), 0 28px 30px rgba(0, 0, 0, 0.3);
     background-color: rgba(17, 101, 232, 1);
     border-radius: 4px;
 }
+
+.is-hidden {
+    visibility: hidden;
+}
