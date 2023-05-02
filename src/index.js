@@ -2,7 +2,7 @@ import './css/styles.css';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
-import { getImages, page} from "./js/getImages";
+import { getImages } from "./js/getImages";
 import {createMarcup} from "./js/createMarcup"
 
 const form = document.querySelector('.search-form');
@@ -23,18 +23,17 @@ const options = {
   threshold: 0,
 };
 
-const observer = new IntersectionObserver(onPagination, options);
+const observer = new IntersectionObserver(onLoadMore, options);
 
 let searchQuery = ``;
 let currentPage = 1;
 let perPage = 40;
 
-
 form.addEventListener(`submit`, onSearch);
 
 async function onSearch(evn) {
   evn.preventDefault()
-  searchQuery = evn.currentTarget.elements.searchQuery.value.trim() //searchQuery.value.trim() можна буде отримати значення, коли ф-я в ін файлі
+  searchQuery = evn.currentTarget.elements.searchQuery.value.trim();
   if (!searchQuery) {
     clear()
     Notify.failure("Please fill in the search field.")
@@ -59,20 +58,13 @@ async function onSearch(evn) {
       lightbox.refresh();
     }
   }
-  
   catch (err) {
     console.log('ERROR: ' + `error`)
-   
-  }; 
+  } 
 }   
 
 
- function clear() {
-    gallery.innerHTML = ''
-};
-
-//async
-function onPagination(entries, observer) {
+function onLoadMore(entries, observer) {
      
      try {
        entries.forEach(async (entry) => {
@@ -80,7 +72,7 @@ function onPagination(entries, observer) {
          if (entry.isIntersecting) {
            currentPage += 1;
            const data = await getImages(searchQuery, currentPage);
-           console.log(data)
+          // console.log(data)
            let totalPages = Math.ceil(data.totalHits/perPage)
            gallery.insertAdjacentHTML('beforeend', createMarcup(data.hits));
            
@@ -89,14 +81,12 @@ function onPagination(entries, observer) {
            if (totalPages === currentPage) {
              Notify.failure("We're sorry, but you've reached the end of search results.");
            }
-          //scroll();
            lightbox.refresh();          
          }
        })     
     }
      catch {
-      // clear()
-       console.log('ERROR: ' + `error`)
+       console.log('ERROR: ' + `error`) 
     }
   }
 
@@ -104,7 +94,21 @@ function resetCurretPage() {
   currentPage = 1;
 }
 
-function scroll() {
+ function clear() {
+    gallery.innerHTML = ''
+}
+
+
+
+
+
+
+
+
+
+
+
+/*function scroll() {
   const { height: cardHeight } = document
     .querySelector('.gallery')
     .firstElementChild.getBoundingClientRect();
@@ -113,17 +117,9 @@ function scroll() {
     top: cardHeight * 2,
     behavior: 'smooth',
   });
-}
+}*/
 
     
-
-
-
-
-
-
-
-
 
 
 /*const loadMoreBtn = document.querySelector(`.load-more`);
