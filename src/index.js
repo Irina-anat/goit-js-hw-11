@@ -11,6 +11,11 @@ const gallery = document.querySelector(`.gallery`);
 //console.log(gallery);
 const guard = document.querySelector(`.js-guard`);
 //console.log(guard)
+
+const lightbox = new SimpleLightbox('.gallery a', {
+          captionsData: 'alt',
+          captionDelay: 250,
+        })
 const options = {
      root: null,
     rootMargin: '600px',
@@ -42,7 +47,6 @@ async function onSearch(evn) {
         form.reset()
         clear() 
         Notify.failure("Sorry, there are no images matching your search query. Please try again.")
-      
       } else {
         resetCurretPage()
         form.reset()
@@ -50,10 +54,7 @@ async function onSearch(evn) {
         gallery.insertAdjacentHTML('beforeend', createMarcup(data.hits))
         observer.observe(guard)
         Notify.success(`Hooray! We found ${data.totalHits} images.`)
-        const lightbox = new SimpleLightbox('.gallery a', {
-          captionsData: 'alt',
-          captionDelay: 250,
-        }).refresh(); 
+        lightbox.refresh(); 
       }
     }
     catch (err)
@@ -71,19 +72,17 @@ async function onPagination(entries, observer) {
          if (entry.isIntersecting) {
            const totalPages = currentPage * perPage;
            currentPage += 1;
-        const data = await getImages(searchQuery, currentPage)
+           const data = await getImages(searchQuery, currentPage)
+          
           gallery.insertAdjacentHTML('beforeend', createMarcup(data.hits))
           observer.observe(guard)
-         
+          
            console.log(data.totalHits)
-          console.log(totalPages)
+           console.log(totalPages)
             if (totalPages >= data.totalHits ) {
         Notify.failure("We're sorry, but you've reached the end of search results.")
           }
-          const lightbox = new SimpleLightbox('.gallery a', {
-        captionsData: 'alt',
-        captionDelay: 250,
-      }).refresh();      
+          lightbox.refresh();      
          }     
     })     
   }
