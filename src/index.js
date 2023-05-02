@@ -75,18 +75,16 @@ async function onPagination(entries, observer) {
           gallery.insertAdjacentHTML('beforeend', createMarcup(data.hits))
           observer.observe(guard)
          
-           console.log(data.hits)
            console.log(data.totalHits)
-           console.log(data.hits.length)
           console.log(totalPages)
-            if (data.hits.length === 0 || totalPages === data.totalHits ) {
+            if (totalPages >= data.totalHits ) {
         Notify.failure("We're sorry, but you've reached the end of search results.")
           }
           const lightbox = new SimpleLightbox('.gallery a', {
         captionsData: 'alt',
         captionDelay: 250,
       }).refresh();      
-    }
+         }     
     })     
   }
   catch {
