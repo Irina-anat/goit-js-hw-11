@@ -3,7 +3,8 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
 import { getImages } from "./js/getImages";
-import {createMarcup} from "./js/createMarcup"
+import { createMarcup } from "./js/createMarcup";
+import { scroll } from "./js/scroll";
 
 const form = document.querySelector('.search-form');
 const gallery = document.querySelector(`.gallery`);
@@ -70,6 +71,7 @@ async function onSearch(evn) {
 
          if (entry.isIntersecting) {
            currentPage += 1;
+           scroll()
            const data = await getImages(searchQuery, currentPage);
            // console.log(data)
            let totalPages = Math.ceil(data.totalHits / perPage);
@@ -100,7 +102,6 @@ function resetSlider() {
   const slider = document.getElementById('slider');
   window.scrollTo(0, slider.offsetTop);
 };
-
 
 
 
