@@ -46,7 +46,7 @@ p {
     background: rgb(254, 255, 0);
     background: linear-gradient(90deg, rgba(254, 255, 0, 1) 0%, rgba(17, 101, 232, 1) 69%);
     background-repeat: no-repeat;
-    padding: 20px 20px;
+    padding: 30px;
     align-items: center;
     justify-content: center;   
 }
@@ -57,7 +57,7 @@ input{
     border-top-left-radius: 6px;
     border-bottom-left-radius: 6px;
     border: 2px solid #ccc;
-    font-size: 16px;      
+    font-size: 20px;      
 }
 
 textarea:focus,
@@ -69,8 +69,8 @@ input:focus {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 45.5px;
-    height: 45.5px;
+    width: 50px;
+    height: 50.5px;
     border-top-right-radius: 6px;
     border-bottom-right-radius: 6px;
     border: 1px solid #ccc;
