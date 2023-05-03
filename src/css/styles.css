@@ -80,8 +80,9 @@ input:focus {
 }
 
 .search-button:hover{
-    background-color: #1165e8;
+    background-color: #1165e8;  
     border: 1px solid #ccc;
+    outline: none;
 }
 
 .search-icon{

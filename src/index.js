@@ -6,11 +6,12 @@ import { getImages } from "./js/getImages";
 import {createMarcup} from "./js/createMarcup"
 
 const form = document.querySelector('.search-form');
-//console.log(form)
 const gallery = document.querySelector(`.gallery`);
-//console.log(gallery);
 const guard = document.querySelector(`.js-guard`);
-//console.log(guard)
+
+let searchQuery = ``;
+let currentPage = 1;
+let perPage = 40;
 
 const lightbox = new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
@@ -25,10 +26,6 @@ const options = {
 
 const observer = new IntersectionObserver(onLoadMore, options);
 
-let searchQuery = ``;
-let currentPage = 1;
-let perPage = 40;
-
 form.addEventListener(`submit`, onSearch);
 
 async function onSearch(evn) {
@@ -38,30 +35,32 @@ async function onSearch(evn) {
     clear()
     Notify.failure("Please fill in the search field.")
     observer.unobserve(guard)
-    return;
-  }
+    return
+  };
   
   try {
+    resetCurretPage()
     const data = await getImages(searchQuery, currentPage);
     console.log(data.hits)
-    if (data.hits < 1) {
+    if (data.hits.length === 0) {
       form.reset()
       clear()
       Notify.failure("Sorry, there are no images matching your search query. Please try again.")
-    } else {
-      resetCurretPage()
+      return;
+    } 
       form.reset()
       clear()
+      resetSlider() 
       gallery.insertAdjacentHTML('beforeend', createMarcup(data.hits))
       observer.observe(guard)
       Notify.success(`Hooray! We found ${data.totalHits} images.`)
-      lightbox.refresh();
-    }
+      lightbox.refresh();  
   }
   catch (err) {
     console.log('ERROR: ' + `error`)
+    clear()
   } 
-}   
+}; 
 
 
 function onLoadMore(entries, observer) {
@@ -75,32 +74,32 @@ function onLoadMore(entries, observer) {
           // console.log(data)
            let totalPages = Math.ceil(data.totalHits/perPage)
            gallery.insertAdjacentHTML('beforeend', createMarcup(data.hits));
-           
-           observer.observe(guard);
-
            if (totalPages === currentPage) {
              Notify.failure("We're sorry, but you've reached the end of search results.");
+             observer.unobserve(guard)
            }
-           lightbox.refresh();          
+           lightbox.refresh()          
          }
        })     
     }
      catch {
-       console.log('ERROR: ' + `error`) 
+       console.log('ERROR: ' + `error`)
+       clear()
     }
-  }
+};
 
 function resetCurretPage() {
   currentPage = 1;
-}
+};
 
  function clear() {
     gallery.innerHTML = ''
-}
+};
 
-
-
-
+function resetSlider() {
+  const slider = document.getElementById('slider');
+  window.scrollTo(0, slider.offsetTop);
+};
 
 
 
