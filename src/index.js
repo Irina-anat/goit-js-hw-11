@@ -63,7 +63,7 @@ async function onSearch(evn) {
 }; 
 
 
-  function onLoadMore(entries, observer) {
+  async function onLoadMore(entries, observer) {
      
      try {
        entries.forEach(async function (entry) {
