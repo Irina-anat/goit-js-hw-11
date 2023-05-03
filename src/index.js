@@ -63,28 +63,28 @@ async function onSearch(evn) {
 }; 
 
 
-function onLoadMore(entries, observer) {
+  function onLoadMore(entries, observer) {
      
      try {
-       entries.forEach(async (entry) => {
-        
+       entries.forEach(async function (entry) {
+
          if (entry.isIntersecting) {
            currentPage += 1;
            const data = await getImages(searchQuery, currentPage);
-          // console.log(data)
-           let totalPages = Math.ceil(data.totalHits/perPage)
+           // console.log(data)
+           let totalPages = Math.ceil(data.totalHits / perPage);
            gallery.insertAdjacentHTML('beforeend', createMarcup(data.hits));
            if (totalPages === currentPage) {
              Notify.failure("We're sorry, but you've reached the end of search results.");
-             observer.unobserve(guard)
+             observer.unobserve(guard);
            }
-           lightbox.refresh()          
+           lightbox.refresh();
          }
        })     
     }
      catch {
        console.log('ERROR: ' + `error`)
-       clear()
+       clear();
     }
 };
 
