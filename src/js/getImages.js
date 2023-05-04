@@ -11,7 +11,6 @@ async function getImages(searchQuery, page = 1) {
     safesearch: true,
     per_page: 40,
   })
-  const URL = `${BASE_URL}?${params}`
   const images = await axios.get(`${BASE_URL}?${params}&page=${page}`);
   console.log(images.data)
   return images.data;

@@ -97,8 +97,7 @@ function resetCurretPage() {
 };
 
 function resetSlider() {
-  const slider = document.getElementById('slider');
-  window.scrollTo(0, slider.offsetTop);
+  window.scrollTo(0, guard.offsetTop);
 };
 
 
