@@ -30,7 +30,7 @@ form.addEventListener(`submit`, onSearch);
 
 async function onSearch(evn) {
   evn.preventDefault()
-  searchQuery = evn.currentTarget.elements.searchQuery.value.trim();
+  searchQuery = evn.target.elements.searchQuery.value.trim();
   if (!searchQuery) {
     clear()
     Notify.failure("Please fill in the search field.")
@@ -42,7 +42,7 @@ async function onSearch(evn) {
     resetCurretPage()
     const data = await getImages(searchQuery, currentPage);
     console.log(data.hits)
-    if (data.hits.length === 0) {
+    if (!data.hits.length) {
       form.reset()
       clear()
       Notify.failure("Sorry, there are no images matching your search query. Please try again.")
