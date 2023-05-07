@@ -72,7 +72,7 @@ async function onSearch(evn) {
            currentPage += 1;
            const data = await getImages(searchQuery, currentPage);
            // console.log(data)
-           let totalPages = Math.ceil(data.totalHits / perPage);
+           const totalPages = Math.ceil(data.totalHits / perPage);
            gallery.insertAdjacentHTML('beforeend', createMarcup(data.hits));
            if (totalPages === currentPage) {
              Notify.failure("We're sorry, but you've reached the end of search results.");
