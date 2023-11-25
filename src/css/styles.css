@@ -9,6 +9,8 @@ body {
     -moz-osx-font-smoothing: grayscale;
     background-color: #fafafa;
     line-height: 1.5;
+    margin: 0;
+    padding-top: 150px;
 }
 
 ul {
@@ -37,12 +39,16 @@ p {
     padding: 0;
 }
 
+.header{
+position: fixed;
+top: 0%;
+left: 0%;
+width: 100%;
+min-height: 111px;
+}
+
 .search-box{
-    position: fixed;
     display: flex;
-    width: 100%;
-    top: 0%;
-    left: 0%;
     background: rgb(254, 255, 0);
     background: linear-gradient(90deg, rgba(254, 255, 0, 1) 0%, rgba(17, 101, 232, 1) 69%);
     background-repeat: no-repeat;
@@ -77,29 +83,19 @@ input:focus {
     outline: none;
     cursor: pointer;
     background-color: #feff00;
-    transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    color: #1165e8;
+    fill: currentColor;
+    transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1), color 300ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .search-button:hover{
     background-color: #1165e8;  
+    color: #feff00;
     outline: none;
-}
-
-.search-icon{
-    background-size: contain;
-    fill: #1165e8;
-    width: 25px;
-    transition: fill 300ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.search-icon:hover,
-.search-icon:focus{
-    fill: #feff00;
 }
 
 .container{
     margin: 0 auto;
-    padding-top: 150px;
     padding-bottom: 50px;
 }
 

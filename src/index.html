@@ -1,41 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Search for images by keyword">
-  <title>Homework 11</title>
-</head>
-<body> 
- <header>
-  <form class="search-form" id="search-form">
-      <div class="search-box">
-        <input type="text" name="searchQuery" autocomplete="off" placeholder="Search images..." />
-        <button type="submit" class="search-button" name="searchButton">
-          <svg class="search-icon" <symbol id="icon-search" viewBox="0 0 32 32">
-            <path
-              d="M31.008 27.231l-7.58-6.447c-0.784-0.705-1.622-1.029-2.299-0.998 1.789-2.096 2.87-4.815 2.87-7.787 0-6.627-5.373-12-12-12s-12 5.373-12 12 5.373 12 12 12c2.972 0 5.691-1.081 7.787-2.87-0.031 0.677 0.293 1.515 0.998 2.299l6.447 7.58c1.104 1.226 2.907 1.33 4.007 0.23s0.997-2.903-0.23-4.007zM12 20c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z">
-            </path>
-            </symbol>
-          </svg>
-        </button>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Search for images by keyword" />
+    <title>Search images</title>
+  </head>
+  <body>
+    <header class="header">
+      <form class="search-form" id="search-form">
+        <div class="search-box">
+          <input
+            type="text"
+            name="searchQuery"
+            autocomplete="off"
+            placeholder="Search images..."
+          />
+          <button type="submit" class="search-button" name="searchButton">
+            <svg class="search-icon" width="25" height="25">
+              <use href="/src/images/icon.svg#icon-search"></use>
+            </svg>
+          </button>
+        </div>
+      </form>
+    </header>
+    <main>
+      <div class="container gallery">
+        <!-- Картки зображень -->
       </div>
-  </form>
- </header>
-  <main>
-  <div class="container gallery">
-  <!-- Картки зображень -->
-  </div>
-  <div class="js-guard"></div>
-   <!-- <button  type="button" class="load-more">Load more</button> --> 
-  </main>  
-<script src="index.js" type="module"></script>
-</body>
+      <div class="js-guard"></div>
+      <!-- <button  type="button" class="load-more">Load more</button> -->
+    </main>
+    <script src="index.js" type="module"></script>
+  </body>
 </html>
-
-
-
-
-
-
