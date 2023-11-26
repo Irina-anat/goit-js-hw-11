@@ -9,20 +9,19 @@
   </head>
   <body>
     <header class="header">
-      <form class="search-form" id="search-form">
-        <div class="search-box">
+      <form class="search-form search-box" id="search-form"> 
           <input
             type="text"
             name="searchQuery"
+            autofocus
             autocomplete="off"
             placeholder="Search images..."
-          />
+          />         
           <button type="submit" class="search-button" name="searchButton">
             <svg class="search-icon" width="25" height="25">
               <use href="/src/images/icon.svg#icon-search"></use>
             </svg>
           </button>
-        </div>
       </form>
     </header>
     <main>
