@@ -1,11 +1,11 @@
-import './css/styles.css';
+import { getImages } from "./js/getImages";
+import { createMarcup } from "./js/createMarcup";
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
-import { getImages } from "./js/getImages";
-import { createMarcup } from "./js/createMarcup";
+import './css/styles.css';
 
-const form = document.querySelector('.search-form');
+const form = document.querySelector(`.search-form`);
 const gallery = document.querySelector(`.gallery`);
 const guard = document.querySelector(`.js-guard`);
 
@@ -29,36 +29,36 @@ const observer = new IntersectionObserver(onLoadMore, options);
 form.addEventListener(`submit`, onSearch);
 
 async function onSearch(evn) {
-  evn.preventDefault()
+  evn.preventDefault();
   searchQuery = evn.target.elements.searchQuery.value.trim();
   if (!searchQuery) {
-    clear()
-    Notify.failure("Please fill in the search field.")
-    observer.unobserve(guard)
-    return
+    clear();
+    Notify.failure("Please fill in the search field.");
+    observer.unobserve(guard);
+    return;
   };
   
   try {
-    resetCurretPage()
+    resetCurretPage();
     const data = await getImages(searchQuery, currentPage);
-    console.log(data.hits)
+   // console.log(data.hits)
     if (!data.hits.length) {
-      form.reset()
-      clear()
-      Notify.failure("Sorry, there are no images matching your search query. Please try again.")
+      form.reset();
+      clear();
+      Notify.failure("Sorry, there are no images matching your search query. Please try again.");
       return;
-    } 
-      form.reset()
-      clear()
-      resetSlider() 
-      gallery.insertAdjacentHTML('beforeend', createMarcup(data.hits))
-      observer.observe(guard)
-      Notify.success(`Hooray! We found ${data.totalHits} images.`)
-      lightbox.refresh();  
+    };
+    form.reset();
+    clear();
+    resetSlider(); 
+    gallery.insertAdjacentHTML('beforeend', createMarcup(data.hits));
+    observer.observe(guard);
+    Notify.success(`Hooray! We found ${data.totalHits} images.`);
+    lightbox.refresh(); 
   }
   catch (err) {
-    console.log('ERROR: ' + `error`)
-    clear()
+    console.log('ERROR: ' + `error`);
+    clear();
   } 
 }; 
 
@@ -79,13 +79,13 @@ async function onSearch(evn) {
              observer.unobserve(guard);
            }
            lightbox.refresh();
-         }
-       })     
+         };
+       });    
     }
      catch {
-       console.log('ERROR: ' + `error`)
+       console.log('ERROR: ' + `error`);
        clear();
-    }
+    };
 };
 
 function resetCurretPage() {

@@ -1,5 +1,5 @@
 function createMarcup(arr) {
-  return arr.map(({ webformatURL, largeImageURL, tags, likes, views, comments, downloads }) => 
+  return arr.map(({ webformatURL, largeImageURL, tags, likes, views, comments, downloads }) =>
     `<div class="photo-card">
      <a href="${largeImageURL}">
   <img src="${webformatURL}" alt="${tags}" loading="lazy" class="foto"/>
@@ -18,7 +18,7 @@ function createMarcup(arr) {
     </p>
   </div>
 </div>`)
-    .join(``) 
-}
+    .join(``); 
+};
 
-export {createMarcup}
+export { createMarcup };
